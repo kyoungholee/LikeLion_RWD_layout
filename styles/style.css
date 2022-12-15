@@ -3,3 +3,170 @@
 @import url(./a11y.css);
 @import url(./theme.css);
 @import url(./base.css);
+
+/* 모든 디바이스 (All Device) */
+/* 공통 헤더 */
+.appHeader {
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  padding: var(--spacing-base) var(--spacing-lg);
+  gap: var(--spacing-base);
+
+}
+
+/* 공통 로고*/
+.logo {
+  width: 12.75rem; /* 204px */
+  height: 3.687rem; /* 59px */
+}
+
+.logo__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(./../images/webcafe-logo.png) no-repeat;
+  background-size: 100% 100%;
+ 
+}
+.memberOnly {
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+}
+/* 공통 검색 폼 */
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.searchForm__group {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.searchForm__group .formInput {
+  margin-right: var(--spacing-xs);
+}
+
+/*얘가 더 자식이다*/
+.searchForm__group .formInput__input {
+  width: 100%;
+  height: 2rem;
+  border: 1px solid var(--silver);
+  background: var(--white);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.75rem;
+}
+
+.button {
+  cursor: pointer;
+  height: 2rem;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.75rem;
+
+
+  /*flex-shrink : 0 위 아래 같은 값이다 !! 
+  flex : 0 0 auto */
+  white-space: nowrap; 
+  
+  font-size: var(--text-sm);
+}
+
+/*버튼 기본값 */
+.button--none {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/*채워진 버튼*/
+.button--fill {
+  background: var(--secondary-color);
+  color: var(--white);
+  border: 0;
+}
+
+/*고스트 버튼*/
+.button--outline {
+  background: transparent;
+  color: var(--secondary-color);
+  border: 1px solid currentColor;
+}
+
+/* 모바일 디바이스 (Mobile Device) */
+@media (min-width: 320px) and (max-width: 768px) {
+  /* 모바일 헤더 */
+  .appHeader {
+    background: var(--primary-color);
+    color: var(--white);
+
+  }
+
+  /* 모바일 멤버서비스 */
+  .memberOnly {
+    order: -1;
+    font-size: var(--text-sm);
+  }
+  .searchForm__group .formInput {
+    flex-grow: 1;
+    background-color: yellowgreen;
+    padding: 10px;
+  }
+ 
+  button {
+    flex-shrink: 0;
+  }
+}
+
+/*데스크탑  (DeskTOp Device)*/
+
+@media (min-width : 769px ) {
+  .appHeader {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: goldenrod;
+  }
+  .logo{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /*로고 크기의 50%를 다시 위로 끌어 올린다.*/
+  }
+  /* 데스크탑 검색 폼 */
+  .searchForm__group {
+    justify-content: flex-end;
+
+  }
+
+  .searchForm__group .formInput {
+    width: 25rem;
+  }
+
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 고해상도 배경이미지 미디어쿼리 */
+@media (-webkit-min-device-pixel-ratio: 2), /*최소 2배율 이상일때 픽셀 화질이 */
+  (min--moz-device-pixel-ratio: 2),
+  (-o-min-device-pixel-ratio: 2/1),
+  (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .logo__link {
+    background-image: url(./../images/webcafe-logo@2x.png);
+  }
+}
