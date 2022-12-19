@@ -100,6 +100,7 @@ input[type="search"] {
   .appHeader {
     background: var(--primary-color);
     color: var(--white);
+   
 
   }
 
@@ -107,15 +108,107 @@ input[type="search"] {
   .memberOnly {
     order: -1;
     font-size: var(--text-sm);
+    position: relative;
   }
   .searchForm__group .formInput {
     flex-grow: 1;
-    background-color: yellowgreen;
+    background-color: rgb(127, 134, 111);
     padding: 10px;
   }
  
   button {
     flex-shrink: 0;
+  }
+
+    /* 모바일 메인메뉴 제어버튼 */
+    .buttonWrapper {
+      padding: var(--spacing-xxs);
+      overflow: hidden;
+      position: absolute;
+      top: 3.75rem;
+      right: var(--spacing-lg);
+      transform: translate(-0.25rem, -0.25rem);
+    }
+    .button--burger {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+    }
+    .button--burger:focus {
+      outline-offset: 2px;
+    }
+    .button--burgerBarTop,
+    .button--burgerBarMiddle,
+    .button--burgerBarBottom { /*햄버거 모양 처럼 보일 수 있게 크기와 간격을 조정한 코드입니다.*/
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 20%;
+      background: var(--white);
+      border-radius: 0.25rem;
+      left: 0;
+      /*최종으로 내가 만들걸 몇초에 걸쳐서 실행을 시킬꺼냐 즉!!!!  transition은 행위 일어나는 부모 혹은 디자인 한곳 !! 에서 적용해줘야한다. */
+      
+      transition: all 600ms ease-in-out;
+      
+    } /* 처음에 햄버거 모양을 만들기 위한 코드입니다. */ 
+    .button--burgerBarTop {
+      top: 0;
+    }
+    .button--burgerBarMiddle {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .button--burgerBarBottom {
+      top: 100%;
+      transform: translateY(-100%);
+    }
+  /*클릭시 X자 모양으로 바뀌는 코드 입니다. */
+    .button--burger.is--active .button--burgerBarTop {
+      top: 50%; 
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .button--burger.is--active .button--burgerBarMiddle { /*가운데 줄은 없애고 위 아래 줄로면 X를 만든다.!!*/
+      transform: translate(-150%, -50%);
+    }
+    .button--burger.is--active .button--burgerBarBottom {
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+  /* 모바일 메인 메뉴 */
+  .menu__list {
+    background: var(--accent-opacity-color);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    padding: var(--spacing-lg);
+
+    /*js 가 작동하지 않을때는 화면에서 보이지 않게 한다.*/
+    transform: translateX(-150%);
+    /*진행 시간*/
+    transition: all 200ms;
+  }
+
+  .menu__item {
+    padding-left: 10px;
+  }
+  .menu__link {
+    display: block;
+    font-weight: 700;
+    border-bottom: 1px solid var(--silver);
+    font-size: 16px;
+    margin-top: 14px;
+
+  }
+
+  /*js 가 작동하지 않을때는 화면에서 보이지 않게 한다.*/
+  .menu.is--active .menu__list {
+    transform: none;
   }
 }
 
@@ -142,8 +235,37 @@ input[type="search"] {
   .searchForm__group .formInput {
     width: 25rem;
   }
+    /* 데스크탑 메인메뉴 제어버튼 */
+  .button--burger {
+    display: none;
+  }
 
-  
+  /*데스크탑 메인 메뉴*/
+  .menu{
+    background-color: var(--secondary-color);
+  }
+  .menu__list {
+    max-width: var(--container-width);
+    background-color: pink;
+    /*가운데 정렬 */
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+  }
+  .menu__item{
+    padding: var(--spacing-base);
+    color: white;
+    text-shadow: 2px 2px black;
+    background-color: red;
+  }
+  .menu__link {
+    display: block;
+    font-weight: 800;
+    padding: 16px;
+    background-color: yellow;
+  }
 
 }
 
