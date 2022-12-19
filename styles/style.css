@@ -3,3 +3,292 @@
 @import url(./a11y.css);
 @import url(./theme.css);
 @import url(./base.css);
+
+/* 모든 디바이스 (All Device) */
+/* 공통 헤더 */
+.appHeader {
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  padding: var(--spacing-base) var(--spacing-lg);
+  gap: var(--spacing-base);
+
+}
+
+/* 공통 로고*/
+.logo {
+  width: 12.75rem; /* 204px */
+  height: 3.687rem; /* 59px */
+}
+
+.logo__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(./../images/webcafe-logo.png) no-repeat;
+  background-size: 100% 100%;
+ 
+}
+.memberOnly {
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+}
+/* 공통 검색 폼 */
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.searchForm__group {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.searchForm__group .formInput {
+  margin-right: var(--spacing-xs);
+}
+
+/*얘가 더 자식이다*/
+.searchForm__group .formInput__input {
+  width: 100%;
+  height: 2rem;
+  border: 1px solid var(--silver);
+  background: var(--white);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.75rem;
+}
+
+.button {
+  cursor: pointer;
+  height: 2rem;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.75rem;
+
+
+  /*flex-shrink : 0 위 아래 같은 값이다 !! 
+  flex : 0 0 auto */
+  white-space: nowrap; 
+  
+  font-size: var(--text-sm);
+}
+
+/*버튼 기본값 */
+.button--none {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/*채워진 버튼*/
+.button--fill {
+  background: var(--secondary-color);
+  color: var(--white);
+  border: 0;
+}
+
+/*고스트 버튼*/
+.button--outline {
+  background: transparent;
+  color: var(--secondary-color);
+  border: 1px solid currentColor;
+}
+
+/* 모바일 디바이스 (Mobile Device) */
+@media (min-width: 320px) and (max-width: 768px) {
+  /* 모바일 헤더 */
+  .appHeader {
+    background: var(--primary-color);
+    color: var(--white);
+   
+
+  }
+
+  /* 모바일 멤버서비스 */
+  .memberOnly {
+    order: -1;
+    font-size: var(--text-sm);
+    position: relative;
+  }
+  .searchForm__group .formInput {
+    flex-grow: 1;
+    background-color: rgb(127, 134, 111);
+    padding: 10px;
+  }
+ 
+  button {
+    flex-shrink: 0;
+  }
+
+    /* 모바일 메인메뉴 제어버튼 */
+    .buttonWrapper {
+      padding: var(--spacing-xxs);
+      overflow: hidden;
+      position: absolute;
+      top: 3.75rem;
+      right: var(--spacing-lg);
+      transform: translate(-0.25rem, -0.25rem);
+    }
+    .button--burger {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+    }
+    .button--burger:focus {
+      outline-offset: 2px;
+    }
+    .button--burgerBarTop,
+    .button--burgerBarMiddle,
+    .button--burgerBarBottom { /*햄버거 모양 처럼 보일 수 있게 크기와 간격을 조정한 코드입니다.*/
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 20%;
+      background: var(--white);
+      border-radius: 0.25rem;
+      left: 0;
+      /*최종으로 내가 만들걸 몇초에 걸쳐서 실행을 시킬꺼냐 즉!!!!  transition은 행위 일어나는 부모 혹은 디자인 한곳 !! 에서 적용해줘야한다. */
+      
+      transition: all 600ms ease-in-out;
+      
+    } /* 처음에 햄버거 모양을 만들기 위한 코드입니다. */ 
+    .button--burgerBarTop {
+      top: 0;
+    }
+    .button--burgerBarMiddle {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .button--burgerBarBottom {
+      top: 100%;
+      transform: translateY(-100%);
+    }
+  /*클릭시 X자 모양으로 바뀌는 코드 입니다. */
+    .button--burger.is--active .button--burgerBarTop {
+      top: 50%; 
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .button--burger.is--active .button--burgerBarMiddle { /*가운데 줄은 없애고 위 아래 줄로면 X를 만든다.!!*/
+      transform: translate(-150%, -50%);
+    }
+    .button--burger.is--active .button--burgerBarBottom {
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+  /* 모바일 메인 메뉴 */
+  .menu__list {
+    background: var(--accent-opacity-color);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    padding: var(--spacing-lg);
+
+    /*js 가 작동하지 않을때는 화면에서 보이지 않게 한다.*/
+    transform: translateX(-150%);
+    /*진행 시간*/
+    transition: all 200ms;
+  }
+
+  .menu__item {
+    padding-left: 10px;
+  }
+  .menu__link {
+    display: block;
+    font-weight: 700;
+    border-bottom: 1px solid var(--silver);
+    font-size: 16px;
+    margin-top: 14px;
+
+  }
+
+  /*js 가 작동하지 않을때는 화면에서 보이지 않게 한다.*/
+  .menu.is--active .menu__list {
+    transform: none;
+  }
+}
+
+/*데스크탑  (DeskTOp Device)*/
+
+@media (min-width : 769px ) {
+  .appHeader {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: goldenrod;
+  }
+  .logo{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /*로고 크기의 50%를 다시 위로 끌어 올린다.*/
+  }
+  /* 데스크탑 검색 폼 */
+  .searchForm__group {
+    justify-content: flex-end;
+
+  }
+
+  .searchForm__group .formInput {
+    width: 25rem;
+  }
+    /* 데스크탑 메인메뉴 제어버튼 */
+  .button--burger {
+    display: none;
+  }
+
+  /*데스크탑 메인 메뉴*/
+  .menu{
+    background-color: var(--secondary-color);
+  }
+  .menu__list {
+    max-width: var(--container-width);
+    background-color: pink;
+    /*가운데 정렬 */
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+  }
+  .menu__item{
+    padding: var(--spacing-base);
+    color: white;
+    text-shadow: 2px 2px black;
+    background-color: red;
+  }
+  .menu__link {
+    display: block;
+    font-weight: 800;
+    padding: 16px;
+    background-color: yellow;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 고해상도 배경이미지 미디어쿼리 */
+@media (-webkit-min-device-pixel-ratio: 2), /*최소 2배율 이상일때 픽셀 화질이 */
+  (min--moz-device-pixel-ratio: 2),
+  (-o-min-device-pixel-ratio: 2/1),
+  (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .logo__link {
+    background-image: url(./../images/webcafe-logo@2x.png);
+  }
+}
