@@ -100,52 +100,43 @@ input[type="search"] {
   gap: var(--spacing-base);
   padding: var(--spacing-base) var(--spacing-lg);
 }
-
 /*공통 메인 콘텐츠 섹션 제목 */
-
 [class*="__title"] {
   font-size: 1.2rem;
-  font-weight: 700;
-  /* display: flex;
-  flex-flow: column nowrap; */
+  font-weight: 700;/* display: flex;flex-flow: column nowrap; */
   margin-bottom: var(--spacing-base);
   padding-top: 8px;
-  background-color: blue;
-  
 }
 [class*="__enTitle"] {
   font-size: 1rem;
   font-weight: 600;
   display: block;
-
 }
-.sprite {
-  min-height: 3.75rem;
+.sprite { /*화면에 보이는 배경 이미지를 넣기 위함 */
+  min-height: 3.75rem; 
   padding-left: 4rem;
   background: url(../images/sprite_main.png) no-repeat;
 }
-.spriteBook{
+.spriteBook{ /*배경이미지들이 하나의 사진안에 다 들어 있어서 bg-position을 이용해 위치 조정*/
   background-position: 0 0;
-
+  color: var(--accent-book);
 }
-.spriteNews {
+.spriteNews {/*배경이미지들이 하나의 사진안에 다 들어 있어서 bg-position을 이용해 위치 조정*/
   background-position: 0 -230px;
+  color: var(--accent-news);
 }
-.spriteBoard{
+.spriteBoard{/*배경이미지들이 하나의 사진안에 다 들어 있어서 bg-position을 이용해 위치 조정*/
   background-position: 0 -115px;
+  color: var(--accent-board);
 }
-.spriteFavorite {
-
+.spriteFavorite {/*배경이미지들이 하나의 사진안에 다 들어 있어서 bg-position을 이용해 위치 조정*/
+  color: var(--accent-favorite);
   background-position: 0 -345px;
 }
-.spriteTwitter {
+.spriteTwitter {/*배경이미지들이 하나의 사진안에 다 들어 있어서 bg-position을 이용해 위치 조정*/
+  color: var(--accent-twitter);
   background-position: 0 -460px;
 }
-
-
-
-
-
 /*공통 추천 서적*/
 .book {
   grid-area: book;
@@ -162,7 +153,16 @@ input[type="search"] {
 .twitter {
   grid-area: twitter;
 }
-
+.book__cover{
+  text-align: center;
+  background-color: yellow;
+  width: 80%;
+  margin: 0 auto;
+}
+.book__coverCaption {
+  margin-top: 12px;
+  line-height: 1.2rem;
+}
 
 
 /* 모바일 디바이스 (Mobile Device) */
@@ -362,6 +362,7 @@ input[type="search"] {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid red;
+    /*그리드를 이용해 템플릿에 열을 12프레임 기준으로 행을 자동설정한 뒤 배치를 해봤습니다.*/
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
